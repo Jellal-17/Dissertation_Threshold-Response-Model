@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import math
 import seaborn as sns
 
-class T:
+class Threshold_Response:
     def __init__(self, locations, agents, neighbours, sd, iterations, thresh_fun, intercept, connectivity):
         self.number_of_locations = locations
         self.options = []
@@ -488,7 +488,7 @@ class T:
                 intercept = j
                 connectivity = 0.15
 
-                v4 = Version4Optimized(number_of_locations, number_of_agents, number_of_neighbours,
+                v4 = Threshold_Response(number_of_locations, number_of_agents, number_of_neighbours,
                                        standard_deviation, number_of_iterations, threshold_function, intercept, connectivity)
 
                 v4.generate_means()
@@ -539,7 +539,7 @@ class T:
                 intercept = j
                 connectivity = 0.15
 
-                v4 = Version4Optimized(number_of_locations, number_of_agents, number_of_neighbours,
+                v4 = Threshold_Response(number_of_locations, number_of_agents, number_of_neighbours,
                                        standard_deviation, number_of_iterations, threshold_function, intercept, connectivity)
 
                 v4.generate_means()
@@ -589,7 +589,7 @@ if __name__ == '__main__':
     # neighbours = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4]
     neighbours = [2, 3, 5, 7, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90]
     
-    v4_optimized = Version4Optimized(10, 200, 40, 0.06, 100, 0, 0, 0.15)
+    v4_optimized = Threshold_Response(10, 200, 40, 0.06, 100, 0, 0, 0.15)
     
         # Generate means, create network, and run the simulation
     v4_optimized.generate_means()
@@ -609,7 +609,7 @@ if __name__ == '__main__':
     avg_quality = []
     alignments = []
     for i in neighbours:
-        v4_optimized = Version4Optimized(10, 200, i, 0.06, 100, 0, 0, 0.15)
+        v4_optimized = Threshold_Response(10, 200, i, 0.06, 100, 0, 0, 0.15)
     
         # Generate means, create network, and run the simulation
         v4_optimized.generate_means()
@@ -641,35 +641,6 @@ if __name__ == '__main__':
         plt.legend()
         plt.title("Best - No. of Agents")
     
-    
-    #     plt.figure(figsize=(10, 8))
-    #     for i in neighbours:
-    #         v4_optimized = Version4Optimized(10, 200, i, 0.06, 100, 0, 0, 0.15)
-    
-    #         # Generate means, create network, and run the simulation
-    #         v4_optimized.generate_means()
-    #         v4_optimized.create_network()
-    #         v4_optimized.multi_runs(runs)
-    
-    #         # Plot the qualities
-    #         # v4_optimized.plot_qualities()
-    #         # v4_optimized.heatmap_simulation(2, 1)
-    #         # v4_optimized.multi_graphs(1)
-    #         # v4_optimized.multi_graphs(2)
-    #         avg_column = v4_optimized.average_qualities_array[:, -1].reshape(runs, 1)
-    #         avg_quality_columns = np.hstack((avg_quality_columns, avg_column))
-    
-    #         random_colmuns = v4_optimized.average_qualities_array.shape[1]
-    #         random_indices = np.random.choice(random_colmuns, size=3, replace=False)
-    #         percentilesavg= np.percentile(v4_optimized.average_qualities_array[:, random_indices], q= [5, 50, 95], axis=0)
-    
-    #         avg_quality.append(v4_optimized.list_a[-1])
-    
-    #         plt.plot(range(len(v4_optimized.list_a)), v4_optimized.list_a, label="Average Qualities {}".format(i))
-    #         plt.errorbar(random_indices, percentilesavg[1], yerr=[percentilesavg[1] - percentilesavg[0], percentilesavg[2] - percentilesavg[1]],
-    #                         fmt='o', capsize=1, label = "{}".format(i))
-    #         plt.legend()
-    #         plt.title("Average Quality")
     
     plt.figure(figsize=(10, 8))
     ptiles_best = np.percentile(best_quality_columns, q=[10, 50, 90], axis=0)
