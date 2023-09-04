@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import math
 import seaborn as sns
 
-class Version4Optimized:
+class T:
     def __init__(self, locations, agents, neighbours, sd, iterations, thresh_fun, intercept, connectivity):
         self.number_of_locations = locations
         self.options = []
